@@ -7,14 +7,19 @@
     var gamepads = [];
 
     function connect(e) {
-      var gamepad = new Input.Device(e.gamepad);
+      var container = document.createElement("div");
+      container.setAttribute("id", "gamepad" + e.gamepad.index);
+      document.body.appendChild(container);
+
+      try {
+        var gamepad = new Input.Device(e.gamepad);
+      } catch (e) {
+        container.innerHTML = e;
+        return;
+      }
       gamepads[gamepad.index] = gamepad;
 
       document.getElementById("start").style.display = "none";
-
-      var container = document.createElement("div");
-      container.setAttribute("id", "gamepad" + gamepad.index);
-      document.body.appendChild(container);
 
       var header = document.createElement("h2");
       header.appendChild(document.createTextNode("Gamepad: " + gamepad.id));
