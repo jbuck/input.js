@@ -34,6 +34,32 @@ Copyright (c) 2011 Jon Buckley
             'Pad_Left': 13,
             'Pad_Right': 14
           }
+        },
+        "Win": {
+          "axes": {
+            "Left_Stick_X": 0,
+            "Left_Stick_Y": 1,
+            "Right_Stick_X": 3,
+            "Right_Stick_Y": 4,
+            "Pad_Left": 5,
+            "Pad_Right": 5,
+            "Pad_Up": 6,
+            "Pad_Down": 6,
+            "Left_Trigger_2": 2,
+            "Right_Trigger_2": 2
+          },
+          "buttons": {
+            "A_Button": 0,
+            "B_Button": 1,
+            "X_Button": 2,
+            "Y_Button": 3,
+            "Left_Trigger_1": 4,
+            "Right_Trigger_1": 5,
+            "Back_Button": 6,
+            "Start_Button": 7,
+            "Left_Stick_Button": 8,
+            "Right_Stick_Button": 9
+          }
         }
       }
     }
