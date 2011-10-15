@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Input.js test page</title>
+  <script type="text/javascript" src="input.js"></script>
+  <script type="text/javascript">
+    var gamepads = [];
+
+    function connect(e) {
+      var gamepad = new Input.Device(e.gamepad);
+      gamepads[gamepad.index] = gamepad;
+
+      document.getElementById("start").style.display = "none";
+
+      var container = document.createElement("div");
+      container.setAttribute("id", "gamepad" + gamepad.index);
+      document.body.appendChild(container);
+
+      var header = document.createElement("h2");
+      header.appendChild(document.createTextNode("Gamepad: " + gamepad.id));
+      container.appendChild(header);
+
+      header = document.createElement("h3");
+      header.appendChild(document.createTextNode("Axes"));
+      container.appendChild(header);
+
+      var ul = document.createElement("ul");
+      var iter = Object.keys(gamepad.axes);
+      for (var i in iter) {
+        var li = document.createElement("li");
+        var prog = document.createElement("progress");
+        prog.setAttribute("max", "2");
+        prog.setAttribute("value", "1");
+        prog.setAttribute("id", gamepad.id + "-" + iter[i]);
+        li.appendChild(document.createTextNode(iter[i]));
+        li.appendChild(prog);
+        ul.appendChild(li);
+      }
+      container.appendChild(ul);
+
+      header = document.createElement("h3");
+      header.appendChild(document.createTextNode("Buttons"));
+      container.appendChild(header);
+
+      ul = document.createElement("ul");
+      iter = Object.keys(gamepad.buttons);
+      for (var i in Object.keys(gamepad.buttons)) {
+        li = document.createElement("li");
+        prog = document.createElement("progress");
+        prog.setAttribute("max", "1");
+        prog.setAttribute("value", "0");
+        prog.setAttribute("id", gamepad.id + "-" + iter[i]);
+        li.appendChild(document.createTextNode(iter[i]));
+        li.appendChild(prog);
+        ul.appendChild(li);
+      }
+      container.appendChild(ul);
+
+      window.mozRequestAnimationFrame(updateStatus);
+    }
+    
+    function updateStatus(e) {
+      for (var g in gamepads) {
+        var gamepad = gamepads[g];
+        var id = gamepad.id + "-";
+
+        var iter = Object.keys(gamepad.axes);
+        for (var i in iter) {
+          document.getElementById(id + iter[i]).setAttribute("value", gamepad.axes[iter[i]] + 1);
+        }
+
+        iter = Object.keys(gamepad.buttons);
+        for (var i in iter) {
+          document.getElementById(id + iter[i]).setAttribute("value", gamepad.buttons[iter[i]]);
+        }
+      }
+
+      window.mozRequestAnimationFrame(updateStatus);
+    }
+    
+    function disconnect(e) {
+      var d = document.getElementById("gamepad" + e.gamepad.index);
+      document.body.removeChild(d);
+      delete joys[e.gamepad.index];
+    }
+
+    window.addEventListener("MozGamepadConnected", connect);
+    window.addEventListener("MozGamepadDiconnected", disconnect);
+  </script>
+</head>
+<body>
+  <h1 id="start">Press a button on your controller to start</h1>
+</body>
+</html>

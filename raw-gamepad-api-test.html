@@ -1,0 +1,94 @@
+<html>
+<head>
+<script type="text/javascript">
+var controllers = {};
+function connecthandler(e) {
+  var controller = e.gamepad;
+  controllers[e.gamepad.index] = controller;
+  var d = document.createElement("div");
+  d.setAttribute("id", "controller" + e.gamepad.index);
+  var t = document.createElement("h1");
+  t.appendChild(document.createTextNode("gamepad: " + e.gamepad.id));
+  d.appendChild(t);
+  var b = document.createElement("div");
+  b.className = "buttons";
+  for (var i=0; i<controller.buttons.length; i++) {
+    var e = document.createElement("span");
+    e.className = "button";
+    //e.id = "b" + i;
+    e.innerHTML = i;
+    b.appendChild(e);
+  }
+  d.appendChild(b);
+  var a = document.createElement("div");
+  a.className = "axes";
+  for (var i=0; i<controller.axes.length; i++) {
+    var e = document.createElement("progress");
+    e.className = "axis";
+    //e.id = "a" + i;
+    e.setAttribute("max", "2");
+    e.setAttribute("value", "1");
+    e.innerHTML = i;
+    a.appendChild(e);
+  }
+  d.appendChild(a);
+  document.getElementById("start").style.display = "none";
+  document.body.appendChild(d);
+  window.mozRequestAnimationFrame(updateStatus);
+}
+
+function disconnecthandler(e) {
+  var d = document.getElementById("controller" + e.gamepad.index);
+  document.body.removeChild(d);
+  delete controllers[e.gamepad.index];
+}
+
+function updateStatus() {
+  for (j in controllers) {
+    var controller = controllers[j];
+    var d = document.getElementById("controller" + j);
+    var buttons = d.getElementsByClassName("button");
+    
+    for (var i=0; i<controller.buttons.length; i++) {
+      var b = buttons[i];
+      if (controller.buttons[i]) {
+        b.className = "button pressed";
+      }
+      else {
+        b.className = "button";
+      }
+    }
+
+    var axes = d.getElementsByClassName("axis");
+    for (var i=0; i<controller.axes.length; i++) {
+      var a = axes[i];
+      a.innerHTML = i + ": " + controller.axes[i].toFixed(4);
+      a.setAttribute("value", controller.axes[i] + 1);
+    }
+  }
+  window.mozRequestAnimationFrame(updateStatus);
+}
+
+window.addEventListener("MozGamepadConnected", connecthandler);
+window.addEventListener("MozGamepadDisconnected", disconnecthandler);
+</script>
+<style>
+.buttons, .axes {
+  padding: 1em;
+}
+
+.button {
+  padding: 1em;
+  border-radius: 20px;
+  border: 1px solid black;
+}
+
+.pressed {
+  background-color: green;
+}
+</style>
+</head>
+<body>
+<h2 id="start">Press a button on your controller to start</h2>
+</body>
+</html>
