@@ -107,6 +107,13 @@ Copyright (c) 2011 Jon Buckley
     });
   }
 
+  function mapZero(type, prop) {
+    Object.defineProperty(type, prop, {
+      enumerable: true,
+      get: function() { return 0; }
+    });
+  }
+
   var Input = window.Input = {};
   var Device = Input.Device = function(domGamepad) {
     if (!domGamepad) {
@@ -131,16 +138,20 @@ Copyright (c) 2011 Jon Buckley
     for (var a in ImaginaryGamepad.axes) {
       if (keymap.axes[ImaginaryGamepad.axes[a]] !== undefined) {
         mapAxisToAxis(device, keymap, axes, ImaginaryGamepad.axes[a]);
-      } else {
+      } else if (keymap.buttons[ImaginaryGamepad.axes[a]] !== undefined) {
         mapAxisToButton(device, keymap, axes, ImaginaryGamepad.axes[a]);
+      } else {
+        mapZero(axes, ImaginaryGamepad.axes[a]);
       }
     }
 
     for (var b in ImaginaryGamepad.buttons) {
       if (keymap.buttons[ImaginaryGamepad.buttons[b]] !== undefined) {
         mapButtonToButton(device, keymap, buttons, ImaginaryGamepad.buttons[b]);
-      } else {
+      } else if (keymap.axes[ImaginaryGamepad.buttons[b]] !== undefined) {
         mapButtonToAxis(device, keymap, buttons, ImaginaryGamepad.buttons[b]);
+      } else {
+        mapZero(buttons, ImaginaryGamepad.buttons[b]);
       }
     }
 
