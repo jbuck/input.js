@@ -5,7 +5,7 @@ Copyright (c) 2011 Jon Buckley
 
 (function() {
   // Holds all of the physical device to USB enumeration mappings
-  var keymapBlob = { 
+  var keymapBlob = {
     '45e' : {
       '28e' : {
         'Mac' : {
@@ -62,6 +62,37 @@ Copyright (c) 2011 Jon Buckley
           }
         }
       }
+    },
+    "54c": {
+      "268": {
+        "Mac": {
+          "axes": {
+            "Left_Stick_X": 0,
+            "Left_Stick_Y": 1,
+            "Right_Stick_X": 2,
+            "Right_Stick_Y": 3
+          },
+          "buttons": {
+            "Back_Button": 0,
+            "Left_Stick_Button": 1,
+            "Right_Stick_Button": 2,
+            "Start_Button": 3,
+            "Pad_Up": 4,
+            "Pad_Down": 6,
+            "Pad_Right": 5,
+            "Pad_Left": 7,
+            "Left_Trigger_2": 8,
+            "Right_Trigger_2": 9,
+            "Left_Trigger_1": 10,
+            "Right_Trigger_1": 11,
+            "Y_Button": 12,
+            "B_Button": 13,
+            "A_Button": 14,
+            "X_Button": 15,
+            "Home_Button": 16
+          }
+        }
+      }
     }
   };
 
@@ -105,7 +136,7 @@ Copyright (c) 2011 Jon Buckley
   }
 
   // Map imaginary device action to physical device action
-  function mapAxisToAxis(device, keymap, axes, prop) {      
+  function mapAxisToAxis(device, keymap, axes, prop) {
     Object.defineProperty(axes, prop, {
       enumerable: true,
       get: function() { return device.axes[keymap.axes[prop]]; }
@@ -118,7 +149,7 @@ Copyright (c) 2011 Jon Buckley
       get: function() { return 0; }
     });
   }
-  
+
   function mapButtonToButton(device, keymap, buttons, prop) {
     Object.defineProperty(buttons, prop, {
       enumerable: true,
