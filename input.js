@@ -102,12 +102,12 @@ Copyright (c) 2011 Jon Buckley
             "Left_Stick_Y": 1,
             "Right_Stick_Y": 4,
             "Right_Stick_X": 3,
-            "Left_Trigger_2": 2,
-            "Right_Trigger_2": 2,
-            "Pad_Left": 5,
-            "Pad_Right": 5,
-            "Pad_Up": 6,
-            "Pad_Down": 6
+            "Left_Trigger_2": [2, 1],
+            "Right_Trigger_2": [2, -1],
+            "Pad_Left": [5, -1],
+            "Pad_Right": [5, 1],
+            "Pad_Up": [6, -1],
+            "Pad_Down": [6, 1]
           },
           "buttons": {
             "A_Button": 0,
@@ -188,10 +188,17 @@ Copyright (c) 2011 Jon Buckley
   }
 
   function mapButtonToAxis(device, keymap, buttons, prop) {
-    Object.defineProperty(buttons, prop, {
-      enumerable: true,
-      get: function() { return (device.axes[keymap.axes[prop]] + 1) / 2; }
-    });
+    if (typeof keymap.axes[prop] === "number") {
+      Object.defineProperty(buttons, prop, {
+        enumerable: true,
+        get: function() { return (device.axes[keymap.axes[prop]] + 1) / 2; }
+      });
+    } else {
+      Object.defineProperty(buttons, prop, {
+        enumerable: true,
+        get: function() { return device.axes[keymap.axes[prop][0]] * keymap.axes[prop][1]; }
+      });
+    }
   }
 
   function mapZero(type, prop) {
