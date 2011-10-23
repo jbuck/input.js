@@ -188,17 +188,14 @@ Copyright (c) 2011 Jon Buckley
   }
 
   function mapButtonToAxis(device, keymap, buttons, prop) {
-    if (typeof keymap.axes[prop] === "number") {
-      Object.defineProperty(buttons, prop, {
-        enumerable: true,
-        get: function() { return (device.axes[keymap.axes[prop]] + 1) / 2; }
-      });
-    } else {
-      Object.defineProperty(buttons, prop, {
-        enumerable: true,
-        get: function() { return device.axes[keymap.axes[prop][0]] * keymap.axes[prop][1]; }
-      });
+    var multiplier = 1;
+    if (keymap.axes[prop] instanceof Array) {
+      multiplier = keymap.axes[prop][1];
     }
+    Object.defineProperty(buttons, prop, {
+      enumerable: true,
+      get: function() { return device.axes[keymap.axes[prop][0]] * multiplier; }
+    });
   }
 
   function mapZero(type, prop) {
