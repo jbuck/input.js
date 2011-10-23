@@ -93,6 +93,36 @@ Copyright (c) 2011 Jon Buckley
           }
         }
       }
+    },
+    "46d": {
+      "c242": {
+        "Win": {
+          "axes": {
+            "Left_Stick_X": 0,
+            "Left_Stick_Y": 1,
+            "Right_Stick_Y": 4,
+            "Right_Stick_X": 3,
+            "Left_Trigger_2": [2, 1],
+            "Right_Trigger_2": [2, -1],
+            "Pad_Left": [5, -1],
+            "Pad_Right": [5, 1],
+            "Pad_Up": [6, -1],
+            "Pad_Down": [6, 1]
+          },
+          "buttons": {
+            "A_Button": 0,
+            "X_Button": 2,
+            "B_Button": 1,
+            "Y_Button": 3,
+            "Left_Trigger_1": 4,
+            "Right_Trigger_1": 5,
+            "Back_Button": 6,
+            "Start_Button": 7,
+            "Left_Stick_Button": 8,
+            "Right_Stick_Button": 9
+          }
+        }
+      }
     }
   };
 
@@ -158,9 +188,13 @@ Copyright (c) 2011 Jon Buckley
   }
 
   function mapButtonToAxis(device, keymap, buttons, prop) {
+    var multiplier = 1;
+    if (keymap.axes[prop] instanceof Array) {
+      multiplier = keymap.axes[prop][1];
+    }
     Object.defineProperty(buttons, prop, {
       enumerable: true,
-      get: function() { return (device.axes[keymap.axes[prop]] + 1) / 2; }
+      get: function() { return device.axes[keymap.axes[prop][0]] * multiplier; }
     });
   }
 
