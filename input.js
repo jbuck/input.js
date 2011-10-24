@@ -41,12 +41,12 @@ Copyright (c) 2011 Jon Buckley
             "Left_Stick_Y": 1,
             "Right_Stick_X": 3,
             "Right_Stick_Y": 4,
-            "Pad_Left": 5,
-            "Pad_Right": 5,
-            "Pad_Up": 6,
-            "Pad_Down": 6,
-            "Left_Trigger_2": 2,
-            "Right_Trigger_2": 2
+            "Pad_Left": [5, -1],
+            "Pad_Right": [5, 1],
+            "Pad_Up": [6, -1],
+            "Pad_Down": [6, 1],
+            "Left_Trigger_2": [2, 1],
+            "Right_Trigger_2": [2, -1]
           },
           "buttons": {
             "A_Button": 0,
