@@ -14,8 +14,8 @@ Copyright (c) 2011 Jon Buckley
             'Left_Stick_Y': 1,
             'Right_Stick_X': 2,
             'Right_Stick_Y': 3,
-            'Left_Trigger_2': 4,
-            'Right_Trigger_2': 5
+            'Left_Trigger_2': [4, -1, 1],
+            'Right_Trigger_2': [5, -1, 1]
           },
           'buttons' : {
             'A_Button': 0,
@@ -45,8 +45,8 @@ Copyright (c) 2011 Jon Buckley
             "Pad_Right": [5, 1],
             "Pad_Up": [6, -1],
             "Pad_Down": [6, 1],
-            "Left_Trigger_2": [2, 1],
-            "Right_Trigger_2": [2, -1]
+            "Left_Trigger_2": [2, 0, 1],
+            "Right_Trigger_2": [2, -1, 0]
           },
           "buttons": {
             "A_Button": 0,
@@ -102,12 +102,12 @@ Copyright (c) 2011 Jon Buckley
             "Left_Stick_Y": 1,
             "Right_Stick_Y": 4,
             "Right_Stick_X": 3,
-            "Left_Trigger_2": [2, 1],
-            "Right_Trigger_2": [2, -1],
-            "Pad_Left": [5, -1],
-            "Pad_Right": [5, 1],
-            "Pad_Up": [6, -1],
-            "Pad_Down": [6, 1]
+            "Left_Trigger_2": [2, 0, 1],
+            "Right_Trigger_2": [2, -1, 0],
+            "Pad_Left": [5, -1, 0],
+            "Pad_Right": [5, 0, 1],
+            "Pad_Up": [6, -1, 0],
+            "Pad_Down": [6, 0, 1]
           },
           "buttons": {
             "A_Button": 0,
@@ -165,6 +165,10 @@ Copyright (c) 2011 Jon Buckley
     return 'Unknown';
   }
 
+  function map(value, istart, istop, ostart, ostop) {
+    return ostart + (ostop - ostart) * ((value - istart) / (istop - istart));
+  };
+
   // Map imaginary device action to physical device action
   function mapAxisToAxis(device, keymap, axes, prop) {
     Object.defineProperty(axes, prop, {
@@ -188,13 +192,17 @@ Copyright (c) 2011 Jon Buckley
   }
 
   function mapButtonToAxis(device, keymap, buttons, prop) {
-    var multiplier = 1;
-    if (keymap.axes[prop] instanceof Array) {
-      multiplier = keymap.axes[prop][1];
-    }
+    var transform = keymap.axes[prop] instanceof Array;
+
     Object.defineProperty(buttons, prop, {
       enumerable: true,
-      get: function() { return device.axes[keymap.axes[prop][0]] * multiplier; }
+      get: function() {
+        if (transform) {
+          return map(device.axes[keymap.axes[prop][0]], keymap.axes[prop][1], keymap.axes[prop][2], 0, 1);
+        } else {
+          return device.axes[keymap.axes[prop]];
+        }
+      }
     });
   }
 
