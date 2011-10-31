@@ -10,7 +10,9 @@ Info
 
 Supported Controllers
 ---------------------
-* Xbox 360 Controller on Mac
+* Logitech Chillstream on Windows
+* Playstation 3 on Mac OS X
+* Xbox 360 on Mac OS X and Windows
 
 How to use Input.js in three steps
 ----------------------------------
@@ -55,7 +57,7 @@ There are 5 properties on the Input.Device object:
   * Y_Button - Square on the PS3
   * Left_Stick_Button - L3 on the PS3
   * Right_Stick_Button - R3 on the PS3
-  * Start_Button - 
+  * Start_Button -
   * Back_Button - Select on the PS3
   * Home_Button - Xbox or PS button in the middle of the controller
   * Pad_Up - Up on the digital pad
