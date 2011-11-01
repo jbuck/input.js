@@ -6,8 +6,8 @@ Copyright (c) 2011 Jon Buckley
 (function() {
   // Holds all of the physical device to USB enumeration mappings
   var keymapBlob = {
-    '45e' : {
-      '28e' : {
+    '45e' : { /* Microsoft */
+      '28e' : { /* Xbox 360 controller */
         'Mac' : {
           'axes' : {
             'Left_Stick_X': 0,
@@ -41,10 +41,10 @@ Copyright (c) 2011 Jon Buckley
             "Left_Stick_Y": 1,
             "Right_Stick_X": 3,
             "Right_Stick_Y": 4,
-            "Pad_Left": [5, -1],
-            "Pad_Right": [5, 1],
-            "Pad_Up": [6, -1],
-            "Pad_Down": [6, 1],
+            "Pad_Left": [5, -1, 0],
+            "Pad_Right": [5, 0, 1],
+            "Pad_Up": [6, -1, 0],
+            "Pad_Down": [6, 0, 1],
             "Left_Trigger_2": [2, 0, 1],
             "Right_Trigger_2": [2, -1, 0]
           },
@@ -63,8 +63,8 @@ Copyright (c) 2011 Jon Buckley
         }
       }
     },
-    "54c": {
-      "268": {
+    "54c": { /* Sony */
+      "268": { /* PS3 Controller */
         "Mac": {
           "axes": {
             "Left_Stick_X": 0,
@@ -94,8 +94,8 @@ Copyright (c) 2011 Jon Buckley
         }
       }
     },
-    "46d": {
-      "c242": {
+    "46d": { /* Logitech */
+      "c242": { /* Chillstream */
         "Win": {
           "axes": {
             "Left_Stick_X": 0,
