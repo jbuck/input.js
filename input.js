@@ -122,6 +122,34 @@ Copyright (c) 2011 Jon Buckley
             "Right_Stick_Button": 9
           }
         }
+      },
+      "c216": { /* Dual Action */
+        "Mac": {
+          "axes": {
+            "Left_Stick_X": 1,
+            "Left_Stick_Y": 2,
+            "Right_Stick_X": 3,
+            "Right_Stick_Y": 4,
+            "Pad_Left": [1, 0, -1],
+            "Pad_Right": [1, 0, 1],
+            "Pad_Up": [2, 0, -1],
+            "Pad_Down": [2, 0, 1]
+          },
+          "buttons": {
+            "X_Button": 0,
+            "A_Button": 1,
+            "B_Button": 2,
+            "Y_Button": 3,
+            "Left_Trigger_1": 4,
+            "Right_Trigger_1": 5,
+            "Left_Trigger_2": 6,
+            "Right_Trigger_2": 7,
+            "Back_Button": 8,
+            "Start_Button": 9,
+            "Left_Stick_Button": 10,
+            "Right_Stick_Button": 11
+          }
+        }
       }
     }
   };
