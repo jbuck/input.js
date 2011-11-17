@@ -169,6 +169,25 @@ Copyright (c) 2011 Jon Buckley
           }
         }
       }
+    },
+    "Firefox": {
+      "Fake Gamepad": {
+        "Mac": {
+          "axes": {
+
+          },
+          "buttons": {
+            'A_Button' : 0,
+            'B_Button' : 1,
+            'X_Button' : 2,
+            'Y_Button' : 3,
+            'Pad_Up' : 4,
+            'Pad_Down': 5,
+            'Pad_Left': 6,
+            'Pad_Right': 7
+          }
+        }
+      }
     }
   };
 
