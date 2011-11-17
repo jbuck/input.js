@@ -151,6 +151,24 @@ Copyright (c) 2011 Jon Buckley
           }
         }
       }
+    },
+    "40b": {
+      "6533": { /* USB 2A4K GamePad */
+        "Mac": {
+          "axes": {
+            "Pad_Left": [0, 0, -1],
+            "Pad_Right": [0, 0, 1],
+            "Pad_Up": [1, 0, -1],
+            "Pad_Down": [1, 0, 1]
+          },
+          "buttons": {
+            "A_Button": 0,
+            "B_Button": 1,
+            "X_Button": 2,
+            "Y_Button": 3
+          }
+        }
+      }
     }
   };
 
