@@ -46,7 +46,7 @@ Copyright (c) 2011 Jon Buckley
             "Pad_Up": [6, -1, 0],
             "Pad_Down": [6, 0, 1],
             "Left_Trigger_2": [2, 0, 1],
-            "Right_Trigger_2": [2, -1, 0]
+            "Right_Trigger_2": [2, 0, -1]
           },
           "buttons": {
             "A_Button": 0,
