@@ -41,9 +41,9 @@ Copyright (c) 2011 Jon Buckley
             "Left_Stick_Y": 1,
             "Right_Stick_X": 3,
             "Right_Stick_Y": 4,
-            "Pad_Left": [5, -1, 0],
+            "Pad_Left": [5, 0, -1],
             "Pad_Right": [5, 0, 1],
-            "Pad_Up": [6, -1, 0],
+            "Pad_Up": [6, 0, -1],
             "Pad_Down": [6, 0, 1],
             "Left_Trigger_2": [2, 0, 1],
             "Right_Trigger_2": [2, 0, -1]
